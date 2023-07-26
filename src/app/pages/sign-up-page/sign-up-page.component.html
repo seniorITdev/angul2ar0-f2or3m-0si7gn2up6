@@ -1,0 +1,54 @@
+<mat-card class="signup-form">
+  <form [formGroup]="signupForm" (ngSubmit)="onSubmit()">
+    <mat-card-header>
+      <mat-card-title class="signup-form-title">Sign Up</mat-card-title>
+      <mat-card-subtitle class="signup-form-subtitle">
+        {{ subTitle | async }}
+      </mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+      <mat-form-field class="signup-form-control">
+        <mat-label>First Name</mat-label>
+        <input matInput formControlName="firstName" />
+        <mat-error *ngIf="signupForm.get('firstName')?.hasError('required')">
+          First Name is required
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="signup-form-control">
+        <mat-label>Last Name</mat-label>
+        <input matInput formControlName="lastName" />
+        <mat-error *ngIf="signupForm.get('lastName')?.hasError('required')">
+          Last Name is required
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="signup-form-control">
+        <mat-label>Email</mat-label>
+        <input matInput formControlName="email" />
+        <mat-error *ngIf="signupForm.get('email')?.hasError('email')">
+          Please enter a valid email address
+        </mat-error>
+        <mat-error *ngIf="signupForm.get('email')?.hasError('required')">
+          Email is required
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="signup-form-control">
+        <mat-label>Password</mat-label>
+        <input matInput formControlName="password" type="password" />
+        <mat-error *ngIf="signupForm.get('password')?.hasError('required')">
+          Password is required
+        </mat-error>
+        <mat-error *ngIf="signupForm.get('password')?.hasError('pattern')">
+          Should be a minimum of eight characters<br />
+          Should contain lower and uppercase letters<br />
+          Should not contain the user's first or last name<br />
+        </mat-error>
+      </mat-form-field>
+    </mat-card-content>
+    <mat-card-actions align="end" class="signup-form-action">
+      <button mat-raised-button color="primary" type="submit">Sign Up</button>
+    </mat-card-actions>
+  </form>
+</mat-card>
